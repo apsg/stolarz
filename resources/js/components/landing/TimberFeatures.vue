@@ -1,56 +1,95 @@
 <script setup lang="ts">
-import { TreePine, ShieldCheck, Users, Wrench } from 'lucide-vue-next'
-import { useScrollReveal } from '@/composables/useScrollReveal'
-
-const { scrollRef } = useScrollReveal()
-
 const features = [
     {
-        icon: TreePine,
-        title: 'SUSTAINABLE WOOD',
+        title: 'SUSTAINABLE FORESTRY',
         description: 'We source our timber from responsibly managed forests ensuring ecological balance.',
     },
     {
-        icon: ShieldCheck,
-        title: 'QUALITY GUARANTEE',
+        title: 'QUALITY CONTROL',
         description: 'Every piece undergoes rigorous quality control for lasting durability and beauty.',
     },
     {
-        icon: Users,
         title: 'EXPERT TEAM',
         description: 'Our master craftsmen bring decades of combined experience to every project.',
     },
     {
-        icon: Wrench,
-        title: 'CUSTOM SOLUTIONS',
+        title: 'CUSTOM PROCESSING',
         description: 'From concept to completion, we create bespoke woodwork tailored to your needs.',
     },
 ]
 </script>
 
 <template>
-    <section class="bg-white py-20 px-4">
+    <section class="bg-white py-14 px-4 overflow-hidden">
         <div class="mx-auto max-w-7xl">
-            <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-                <div
-                    v-for="(feature, index) in features"
-                    :key="index"
-                    :ref="scrollRef"
-                    class="scroll-reveal text-center"
-                    :style="{ transitionDelay: `${index * 0.1}s` }"
-                >
-                    <div class="mb-4 inline-flex items-center justify-center">
-                        <component :is="feature.icon" :size="48" class="text-timber-orange" />
-                    </div>
-                    <div class="mx-auto mb-4 h-0.5 w-12 bg-timber-orange" />
-                    <h3 class="font-timber mb-3 text-lg font-bold uppercase text-timber-charcoal">
-                        {{ feature.title }}
-                    </h3>
-                    <p class="leading-relaxed text-timber-charcoal/70">
-                        {{ feature.description }}
-                    </p>
+            <div class="marquee-wrapper">
+                <div class="marquee-track">
+                    <template v-for="repeat in 2" :key="repeat">
+                        <div
+                            v-for="(feature, index) in features"
+                            :key="`${repeat}-${index}`"
+                            class="marquee-item text-center"
+                            :class="index < features.length - 1 ? 'border-r border-gray-200' : ''"
+                        >
+                            <div class="mb-4 inline-flex items-center justify-center text-timber-gold">
+                                <!-- Tree SVG (Sustainable Forestry) -->
+                                <svg v-if="index % 4 === 0" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="24,4 36,20 28,20 38,34 28,34 28,44 20,44 20,34 10,34 20,20 12,20" />
+                                </svg>
+                                <!-- Shield/Check SVG (Quality Control) -->
+                                <svg v-else-if="index % 4 === 1" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M24 4L8 10v14c0 10 7 18 16 20 9-2 16-10 16-20V10L24 4z" />
+                                    <polyline points="16,24 21,29 32,18" />
+                                </svg>
+                                <!-- Team/Users SVG (Expert Team) -->
+                                <svg v-else-if="index % 4 === 2" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="18" cy="16" r="6" />
+                                    <path d="M6 42c0-8 5-13 12-13s12 5 12 13" />
+                                    <circle cx="34" cy="16" r="5" />
+                                    <path d="M38 42c0-7 3-11 8-13" />
+                                </svg>
+                                <!-- Gear SVG (Custom Processing) -->
+                                <svg v-else xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="24" cy="24" r="7" />
+                                    <path d="M24 6v4M24 38v4M6 24h4M38 24h4M10.1 10.1l2.8 2.8M35.1 35.1l2.8 2.8M10.1 37.9l2.8-2.8M35.1 12.9l2.8-2.8" />
+                                </svg>
+                            </div>
+                            <h3 class="font-timber mb-3 text-lg font-bold uppercase text-timber-charcoal">
+                                {{ feature.title }}
+                            </h3>
+                            <p class="leading-relaxed text-timber-charcoal/70">
+                                {{ feature.description }}
+                            </p>
+                        </div>
+                    </template>
                 </div>
             </div>
         </div>
     </section>
 </template>
+
+<style scoped>
+.marquee-wrapper {
+    overflow: hidden;
+}
+
+.marquee-track {
+    display: flex;
+    animation: marquee-scroll 24s linear infinite;
+    width: max-content;
+}
+
+.marquee-item {
+    flex: 0 0 280px;
+    padding: 0 2rem;
+}
+
+@keyframes marquee-scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+</style>

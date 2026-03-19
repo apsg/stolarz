@@ -12,32 +12,31 @@ const openFaq = ref<string | null>(null);
 
 const faqItems = [
     {
-        id: 'wood-types',
-        question: 'What types of wood do you work with?',
-        answer: 'We work with a wide variety of hardwoods and softwoods including oak, walnut, maple, cherry, pine, and cedar. We can source specialty woods upon request to match your project\'s specific requirements.',
+        id: 'moisture-level',
+        question: 'WHAT MOISTURE LEVEL SUITS INTERIOR JOINERY WORK?',
+        answer: 'Interior joinery typically requires wood dried to 8-12% moisture content. This range ensures stability and prevents warping or shrinkage after installation. We use precision moisture meters to verify every piece before it leaves our workshop.',
     },
     {
-        id: 'project-timeline',
-        question: 'How long does a typical project take?',
-        answer: 'Project timelines vary based on complexity and scope. A simple furniture piece may take 2-4 weeks, while a full kitchen renovation could take 6-12 weeks. We provide detailed timelines during consultation.',
+        id: 'oil-facades',
+        question: 'HOW TO MAINTAIN OIL FINISHED FACADES?',
+        answer: 'Regular maintenance involves cleaning and reapplying oil every 1-2 years depending on exposure. Use a mild soap solution for cleaning, allow to dry fully, then apply a quality exterior timber oil with a brush or cloth working in the direction of the grain.',
     },
     {
-        id: 'consultations',
-        question: 'Do you offer free consultations?',
-        answer: 'Yes, we offer complimentary initial consultations where we discuss your vision, take measurements, and provide a detailed quote. This helps us understand your needs and budget.',
+        id: 'wooden-roofs',
+        question: 'HOW LONG DO WOODEN ROOFS NORMALLY LAST?',
+        answer: 'With proper maintenance, wooden roofs can last 30-50 years. The lifespan depends on the wood species, climate conditions, installation quality, and regularity of maintenance. Cedar and redwood are among the most durable choices for roofing applications.',
     },
     {
-        id: 'warranty',
-        question: 'What is your warranty policy?',
-        answer: 'All our work comes with a 5-year craftsmanship warranty. We stand behind the quality of our materials and workmanship, and we\'re always available for any post-project support.',
+        id: 'ventilation',
+        question: 'WHAT VENTILATION IS NEEDED UNDER ROOF COVERINGS?',
+        answer: 'Adequate ventilation prevents moisture buildup that leads to rot and structural damage. A continuous air gap of at least 25mm between the insulation and roof deck is recommended, with ventilation openings at the eaves and ridge to allow airflow across the full roof area.',
     },
     {
-        id: 'matching',
-        question: 'Can you match existing woodwork in my home?',
-        answer: 'Absolutely. Our craftsmen are skilled at matching wood species, stains, and finishes to seamlessly integrate new work with your existing woodwork and decor.',
+        id: 'decking-inspection',
+        question: 'HOW OFTEN TO INSPECT OUTDOOR DECKING?',
+        answer: 'Inspect decking at least twice yearly, before and after winter. Check for loose boards, protruding fasteners, signs of rot or discoloration, and any structural movement. Early detection of issues dramatically reduces repair costs and extends the life of your deck.',
     },
 ];
-
 </script>
 
 <template>
@@ -45,7 +44,7 @@ const faqItems = [
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 gap-12 lg:grid-cols-2">
                 <div>
-                    <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-timber-orange">
+                    <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-timber-terracotta">
                         HELPFUL INFORMATION
                     </p>
                     <h2 class="mb-8 text-2xl font-bold uppercase text-timber-charcoal lg:text-3xl">
@@ -63,15 +62,15 @@ const faqItems = [
                             <CollapsibleTrigger
                                 class="flex w-full items-center justify-between py-4 text-left"
                             >
-                                <span class="font-semibold text-timber-charcoal">{{ item.question }}</span>
+                                <span class="uppercase font-semibold text-timber-charcoal">{{ item.question }}</span>
                                 <span
-                                    class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-timber-orange"
+                                    class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-timber-terracotta"
                                 >
-                                    <Minus v-if="openFaq === item.id" :size="16" class="text-timber-orange" />
-                                    <Plus v-else :size="16" class="text-timber-orange" />
+                                    <Minus v-if="openFaq === item.id" :size="16" class="text-timber-terracotta" />
+                                    <Plus v-else :size="16" class="text-timber-terracotta" />
                                 </span>
                             </CollapsibleTrigger>
-                            <CollapsibleContent>
+                            <CollapsibleContent class="transition-all duration-[400ms]">
                                 <p class="py-4 leading-relaxed text-timber-charcoal/70">
                                     {{ item.answer }}
                                 </p>
@@ -84,7 +83,7 @@ const faqItems = [
                     <img
                         src="https://images.unsplash.com/photo-1520420097861-e4959843b682?w=800&q=80"
                         alt="Stacked timber wood"
-                        class="h-full min-h-[500px] w-full rounded-2xl object-cover"
+                        class="h-full min-h-[500px] w-full rounded-lg object-cover"
                     />
                 </div>
             </div>

@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
+import { usePage } from '@inertiajs/vue3';
 import { useWindowScroll } from '@vueuse/core';
-import { Search, User, ShoppingCart, Menu, X, TreePine, ChevronDown } from 'lucide-vue-next';
+import { Search, User, ShoppingCart, Menu, X, ChevronDown } from 'lucide-vue-next';
+
+const page = usePage();
+const cartCount = computed(() => page.props.cart?.items_count ?? 0);
 
 const { y } = useWindowScroll();
 const isScrolled = computed(() => y.value > 80);
@@ -36,9 +40,9 @@ const menuItems: MenuItem[] = [
             { label: 'Gallery', href: '#portfolio' },
         ],
     },
-    { label: 'PORTFOLIO', href: '#portfolio' },
-    { label: 'PRICING', href: '#pricing' },
-    { label: 'CONTACT', href: '#contact' },
+    { label: 'BLOG', href: '#blog' },
+    { label: 'STORE', href: '#store' },
+    { label: 'CONTACTS', href: '#contact' },
 ];
 
 const megaMenuItems = [
@@ -63,16 +67,16 @@ function closeDropdown(): void {
 
 <template>
     <header
-        class="sticky top-0 z-50 w-full transition-all duration-300"
+        class="fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300"
         :class="isScrolled ? 'bg-timber-forest/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'"
     >
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex h-20 items-center justify-between">
                 <!-- Logo -->
                 <a href="#" class="flex items-center gap-2">
-                    <TreePine class="h-8 w-8 text-timber-orange" :stroke-width="2" />
-                    <span class="font-timber text-xl font-bold uppercase tracking-wider text-white">
-                        TIMBER
+                    <img src="/images/logo.png" alt="Lumbert" class="h-10 w-auto">
+                    <span class="font-timber text-xl font-bold uppercase tracking-wider text-timber-gold">
+                        LUMBERT
                     </span>
                 </a>
 
@@ -88,7 +92,7 @@ function closeDropdown(): void {
                         >
                             <a
                                 :href="item.href"
-                                class="flex items-center gap-1 text-sm font-medium tracking-wider text-white transition-colors duration-200 hover:text-timber-orange"
+                                class="flex items-center gap-1 text-xs font-medium tracking-widest text-white transition-colors duration-200 hover:text-timber-orange"
                             >
                                 {{ item.label }}
                                 <ChevronDown :size="14" class="opacity-60" />
@@ -117,7 +121,7 @@ function closeDropdown(): void {
                                                 class="flex h-24 items-center justify-center"
                                                 :class="mega.color"
                                             >
-                                                <TreePine class="h-8 w-8 text-timber-forest opacity-40 transition-opacity duration-200 group-hover/card:opacity-70" />
+                                                <span class="text-2xl opacity-40 transition-opacity duration-200 group-hover/card:opacity-70">🌲</span>
                                             </div>
                                             <div class="p-3">
                                                 <p class="text-sm font-semibold text-timber-charcoal">
@@ -139,7 +143,7 @@ function closeDropdown(): void {
                         >
                             <a
                                 :href="item.href"
-                                class="flex items-center gap-1 text-sm font-medium tracking-wider text-white transition-colors duration-200 hover:text-timber-orange"
+                                class="flex items-center gap-1 text-xs font-medium tracking-widest text-white transition-colors duration-200 hover:text-timber-orange"
                             >
                                 {{ item.label }}
                                 <ChevronDown :size="14" class="opacity-60" />
@@ -173,7 +177,7 @@ function closeDropdown(): void {
                         <a
                             v-else
                             :href="item.href"
-                            class="text-sm font-medium tracking-wider text-white transition-colors duration-200 hover:text-timber-orange"
+                            class="text-xs font-medium tracking-widest text-white transition-colors duration-200 hover:text-timber-orange"
                         >
                             {{ item.label }}
                         </a>
@@ -184,30 +188,36 @@ function closeDropdown(): void {
                 <div class="hidden items-center gap-5 lg:flex">
                     <button
                         type="button"
-                        class="text-white transition-colors duration-200 hover:text-timber-orange"
+                        class="flex flex-col items-center gap-0.5 text-white transition-colors duration-200 hover:text-timber-orange"
                         aria-label="Search"
                     >
                         <Search class="h-5 w-5" />
+                        <span class="text-[9px] font-medium uppercase tracking-widest">search</span>
                     </button>
                     <button
                         type="button"
-                        class="text-white transition-colors duration-200 hover:text-timber-orange"
+                        class="flex flex-col items-center gap-0.5 text-white transition-colors duration-200 hover:text-timber-orange"
                         aria-label="Account"
                     >
                         <User class="h-5 w-5" />
+                        <span class="text-[9px] font-medium uppercase tracking-widest">login</span>
                     </button>
-                    <button
-                        type="button"
-                        class="relative text-white transition-colors duration-200 hover:text-timber-orange"
+                    <a
+                        href="/cart"
+                        class="flex flex-col items-center gap-0.5 text-white transition-colors duration-200 hover:text-timber-orange"
                         aria-label="Cart"
                     >
-                        <ShoppingCart class="h-5 w-5" />
-                        <span
-                            class="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-timber-orange text-[10px] font-bold text-white"
-                        >
-                            0
-                        </span>
-                    </button>
+                        <div class="relative">
+                            <ShoppingCart class="h-5 w-5" />
+                            <span
+                                v-if="cartCount > 0"
+                                class="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-timber-orange text-[10px] font-bold text-white"
+                            >
+                                {{ cartCount }}
+                            </span>
+                        </div>
+                        <span class="text-[9px] font-medium uppercase tracking-widest">cart {{ cartCount }}</span>
+                    </a>
                 </div>
 
                 <!-- Mobile Hamburger -->
@@ -252,9 +262,12 @@ function closeDropdown(): void {
                 class="fixed inset-y-0 right-0 z-50 w-72 bg-timber-forest shadow-2xl"
             >
                 <div class="flex items-center justify-between border-b border-white/10 px-6 py-5">
-                    <span class="font-timber text-lg font-bold uppercase tracking-wider text-white">
-                        TIMBER
-                    </span>
+                    <div class="flex items-center gap-2">
+                        <img src="/images/logo.png" alt="Lumbert" class="h-8 w-auto">
+                        <span class="font-timber text-lg font-bold uppercase tracking-wider text-timber-gold">
+                            LUMBERT
+                        </span>
+                    </div>
                     <button
                         type="button"
                         class="text-white transition-colors duration-200 hover:text-timber-orange"
@@ -270,7 +283,7 @@ function closeDropdown(): void {
                         v-for="item in menuItems"
                         :key="item.label"
                         :href="item.href"
-                        class="border-b border-white/10 py-4 text-sm font-medium tracking-wider text-white transition-colors duration-200 hover:text-timber-orange"
+                        class="border-b border-white/10 py-4 text-xs font-medium tracking-widest text-white transition-colors duration-200 hover:text-timber-orange"
                         @click="closeMobile"
                     >
                         {{ item.label }}
@@ -292,18 +305,19 @@ function closeDropdown(): void {
                     >
                         <User class="h-5 w-5" />
                     </button>
-                    <button
-                        type="button"
+                    <a
+                        href="/cart"
                         class="relative text-white transition-colors duration-200 hover:text-timber-orange"
                         aria-label="Cart"
                     >
                         <ShoppingCart class="h-5 w-5" />
                         <span
+                            v-if="cartCount > 0"
                             class="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-timber-orange text-[10px] font-bold text-white"
                         >
-                            0
+                            {{ cartCount }}
                         </span>
-                    </button>
+                    </a>
                 </div>
             </div>
         </Transition>

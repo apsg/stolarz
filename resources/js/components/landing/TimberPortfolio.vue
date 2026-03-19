@@ -8,20 +8,20 @@ const hoveredIndex = ref<number | null>(null);
 
 const portfolioItems = [
     {
-        title: 'Kitchen Design',
-        image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80',
+        title: 'MODULAR KITCHEN',
+        image: '/images/service_01.jpg',
     },
     {
-        title: 'Custom Furniture',
-        image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80',
+        title: 'CUSTOM FURNITURE',
+        image: '/images/service_02.jpg',
     },
     {
-        title: 'Wooden Stairs',
-        image: 'https://images.unsplash.com/photo-1572025442646-866d16c84a54?w=600&q=80',
+        title: 'WOODEN STAIRS',
+        image: '/images/service_03.jpg',
     },
     {
-        title: 'Wood Flooring',
-        image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80',
+        title: 'HARDWOOD FLOORING',
+        image: '/images/service_04.jpg',
     },
 ];
 </script>
@@ -29,9 +29,9 @@ const portfolioItems = [
 <template>
     <section id="portfolio" class="bg-timber-forest py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div :ref="scrollRef" class="scroll-reveal mb-12 text-center">
-                <p class="mb-3 text-sm font-medium uppercase tracking-wider text-timber-orange">
-                    THE POSSIBILITY OF WOOD FORESTRY
+            <div :ref="scrollRef" class="scroll-reveal mb-16 text-center">
+                <p class="mb-3 text-sm font-medium uppercase tracking-wider text-white/60">
+                    THE ESSENCE OF WOOD CARPENTRY
                 </p>
                 <h2 class="font-timber text-3xl font-bold uppercase text-white lg:text-4xl">
                     RESPONSIBLE TIMBER PRODUCTION
@@ -62,7 +62,7 @@ const portfolioItems = [
 
             <!-- Desktop: flex expand layout -->
             <div
-                class="hidden h-[500px] gap-4 lg:flex"
+                class="hidden h-[560px] gap-3 lg:flex"
                 @mouseleave="hoveredIndex = null"
             >
                 <div
@@ -88,7 +88,7 @@ const portfolioItems = [
                         :class="hoveredIndex === index ? 'opacity-0' : 'opacity-100'"
                     >
                         <span
-                            class="text-sm font-semibold uppercase tracking-wider text-white/80"
+                            class="text-lg font-bold uppercase tracking-wider text-white"
                             style="writing-mode: vertical-rl"
                         >
                             {{ item.title }}

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useWindowScroll } from '@vueuse/core';
-import { ChevronUp, TreePine } from 'lucide-vue-next';
+import { ChevronUp } from 'lucide-vue-next';
 
 const { y } = useWindowScroll();
 const showScrollTop = computed(() => y.value > 500);
@@ -9,9 +9,9 @@ const showScrollTop = computed(() => y.value > 500);
 const exploreLinks = [
     { label: 'Home', href: '#' },
     { label: 'About', href: '#about' },
-    { label: 'Portfolio', href: '#portfolio' },
-    { label: 'Pricing', href: '#pricing' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Blog', href: '#blog' },
+    { label: 'Store', href: '#store' },
+    { label: 'Contacts', href: '#contact' },
 ];
 
 function scrollToTop(): void {
@@ -26,12 +26,12 @@ function scrollToTop(): void {
                 <!-- Left Column: Logo & Description -->
                 <div>
                     <div class="mb-6 flex items-center gap-2">
-                        <TreePine class="h-8 w-8 text-timber-orange" :stroke-width="2" />
+                        <img src="/images/logo.png" alt="Lumbert" class="h-12 w-auto">
                         <span class="font-timber text-xl font-bold uppercase tracking-wider">
-                            TIMBER
+                            LUMBERT
                         </span>
                     </div>
-                    <p class="mb-4 text-sm font-semibold uppercase tracking-wider text-timber-orange">
+                    <p class="mb-4 text-lg font-bold text-white">
                         TIMBER FOR ELEGANT CONSTRUCTION
                     </p>
                     <p class="max-w-sm text-sm leading-relaxed text-white/70">
@@ -50,7 +50,7 @@ function scrollToTop(): void {
                         <li v-for="link in exploreLinks" :key="link.label">
                             <a
                                 :href="link.href"
-                                class="text-sm text-white/70 transition-colors duration-200 hover:text-timber-orange"
+                                class="uppercase text-sm text-white/70 transition-colors duration-200 hover:text-timber-orange"
                             >
                                 {{ link.label }}
                             </a>
@@ -63,32 +63,38 @@ function scrollToTop(): void {
                     <h3 class="font-timber mb-6 text-lg font-bold uppercase tracking-wider">
                         Contact Info
                     </h3>
-                    <ul class="space-y-3 text-sm text-white/70">
-                        <li>123 Wood Lane, Forest City</li>
-                        <li>
+                    <div class="space-y-4 text-sm text-white/70">
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wider text-timber-terracotta mb-1">
+                                CENTRAL OFFICE:
+                            </p>
+                            <p>123 Wood Lane, Forest City</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wider text-timber-terracotta mb-1">
+                                PHONES:
+                            </p>
                             <a
                                 href="tel:+15551234567"
-                                class="transition-colors duration-200 hover:text-timber-orange"
+                                class="block transition-colors duration-200 hover:text-timber-orange"
                             >
                                 +1 (555) 123-4567
                             </a>
-                        </li>
-                        <li>
                             <a
-                                href="mailto:info@timber.com"
-                                class="transition-colors duration-200 hover:text-timber-orange"
+                                href="tel:+15559876543"
+                                class="block transition-colors duration-200 hover:text-timber-orange"
                             >
-                                info@timber.com
+                                +1 (555) 987-6543
                             </a>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Bottom Bar -->
             <div class="mt-12 border-t border-white/10 pt-8 text-center">
                 <p class="text-sm text-white/50">
-                    &copy; 2026 Timber. All rights reserved.
+                    &copy; 2026 Lumbert. All rights reserved.
                 </p>
             </div>
         </div>

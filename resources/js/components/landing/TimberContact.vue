@@ -22,106 +22,100 @@ const form = reactive({
                 alt="Misty forest background"
                 class="h-full w-full object-cover"
             />
-            <div class="absolute inset-0 bg-black/40" />
+            <div class="absolute inset-0 bg-black/50" />
         </div>
 
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-                <div class="text-white">
-                    <div class="mb-6 flex items-center gap-4">
-                        <Phone :size="32" class="text-timber-orange" />
-                        <h2 class="text-2xl font-bold text-white">
-                            Call us: +1 (555) 123-4567
-                        </h2>
+            <div
+                :ref="scrollRef"
+                class="scroll-reveal mx-auto max-w-2xl rounded-2xl bg-white p-8 shadow-2xl lg:p-12"
+            >
+                <h2 class="mb-8 text-2xl font-bold uppercase text-timber-charcoal">
+                    MAKE AN APPOINTMENT
+                </h2>
+
+                <form @submit.prevent>
+                    <div class="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                        <div>
+                            <label class="mb-1 block text-sm font-semibold uppercase tracking-wider text-timber-charcoal/70">
+                                First Name
+                            </label>
+                            <input
+                                v-model="form.firstName"
+                                type="text"
+                                placeholder="First Name"
+                                class="w-full rounded-lg border border-timber-charcoal/20 bg-white px-4 py-3 transition focus:border-timber-orange focus:outline-none"
+                            />
+                        </div>
+                        <div>
+                            <label class="mb-1 block text-sm font-semibold uppercase tracking-wider text-timber-charcoal/70">
+                                Last Name
+                            </label>
+                            <input
+                                v-model="form.lastName"
+                                type="text"
+                                placeholder="Last Name"
+                                class="w-full rounded-lg border border-timber-charcoal/20 bg-white px-4 py-3 transition focus:border-timber-orange focus:outline-none"
+                            />
+                        </div>
                     </div>
-                    <p class="text-lg text-white/80">
-                        We're available Monday to Saturday, 8am to 6pm
-                    </p>
-                </div>
 
-                <div
-                    :ref="scrollRef"
-                    class="scroll-reveal rounded-2xl bg-timber-cream p-8 shadow-2xl lg:p-12"
-                >
-                    <h2 class="mb-8 text-2xl font-bold uppercase text-timber-charcoal">
-                        MAKE AN APPOINTMENT
-                    </h2>
+                    <div class="mb-4">
+                        <label class="mb-1 block text-sm font-semibold uppercase tracking-wider text-timber-charcoal/70">
+                            Email
+                        </label>
+                        <input
+                            v-model="form.email"
+                            type="email"
+                            placeholder="Email Address"
+                            class="w-full rounded-lg border border-timber-charcoal/20 bg-white px-4 py-3 transition focus:border-timber-orange focus:outline-none"
+                        />
+                    </div>
 
-                    <form @submit.prevent>
-                        <div class="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                            <div>
-                                <label class="mb-1 block text-sm font-semibold uppercase tracking-wider text-timber-charcoal/70">
-                                    First Name
-                                </label>
-                                <input
-                                    v-model="form.firstName"
-                                    type="text"
-                                    placeholder="First Name"
-                                    class="w-full rounded-lg border border-timber-charcoal/20 bg-white px-4 py-3 transition focus:border-timber-orange focus:outline-none"
-                                />
-                            </div>
-                            <div>
-                                <label class="mb-1 block text-sm font-semibold uppercase tracking-wider text-timber-charcoal/70">
-                                    Last Name
-                                </label>
-                                <input
-                                    v-model="form.lastName"
-                                    type="text"
-                                    placeholder="Last Name"
-                                    class="w-full rounded-lg border border-timber-charcoal/20 bg-white px-4 py-3 transition focus:border-timber-orange focus:outline-none"
-                                />
-                            </div>
-                        </div>
+                    <div class="mb-4">
+                        <label class="mb-1 block text-sm font-semibold uppercase tracking-wider text-timber-charcoal/70">
+                            Phone Number
+                        </label>
+                        <input
+                            v-model="form.phone"
+                            type="tel"
+                            placeholder="Phone Number"
+                            class="w-full rounded-lg border border-timber-charcoal/20 bg-white px-4 py-3 transition focus:border-timber-orange focus:outline-none"
+                        />
+                    </div>
 
-                        <div class="mb-4">
-                            <label class="mb-1 block text-sm font-semibold uppercase tracking-wider text-timber-charcoal/70">
-                                Email
-                            </label>
-                            <input
-                                v-model="form.email"
-                                type="email"
-                                placeholder="Email Address"
-                                class="w-full rounded-lg border border-timber-charcoal/20 bg-white px-4 py-3 transition focus:border-timber-orange focus:outline-none"
-                            />
-                        </div>
+                    <div class="mb-6">
+                        <label class="mb-1 block text-sm font-semibold uppercase tracking-wider text-timber-charcoal/70">
+                            Carpenter Service
+                        </label>
+                        <select
+                            v-model="form.service"
+                            class="w-full rounded-lg border border-timber-charcoal/20 bg-white px-4 py-3 transition focus:border-timber-orange focus:outline-none"
+                        >
+                            <option value="">Select a service</option>
+                            <option value="kitchen-design">Kitchen Design</option>
+                            <option value="custom-furniture">Custom Furniture</option>
+                            <option value="deck-construction">Deck Construction</option>
+                            <option value="interior-finishing">Interior Finishing</option>
+                            <option value="furniture-restoration">Furniture Restoration</option>
+                        </select>
+                    </div>
 
-                        <div class="mb-4">
-                            <label class="mb-1 block text-sm font-semibold uppercase tracking-wider text-timber-charcoal/70">
-                                Phone Number
-                            </label>
-                            <input
-                                v-model="form.phone"
-                                type="tel"
-                                placeholder="Phone Number"
-                                class="w-full rounded-lg border border-timber-charcoal/20 bg-white px-4 py-3 transition focus:border-timber-orange focus:outline-none"
-                            />
-                        </div>
-
-                        <div class="mb-6">
-                            <label class="mb-1 block text-sm font-semibold uppercase tracking-wider text-timber-charcoal/70">
-                                Carpenter Service
-                            </label>
-                            <select
-                                v-model="form.service"
-                                class="w-full rounded-lg border border-timber-charcoal/20 bg-white px-4 py-3 transition focus:border-timber-orange focus:outline-none"
-                            >
-                                <option value="">Select a service</option>
-                                <option value="kitchen-design">Kitchen Design</option>
-                                <option value="custom-furniture">Custom Furniture</option>
-                                <option value="deck-construction">Deck Construction</option>
-                                <option value="interior-finishing">Interior Finishing</option>
-                                <option value="furniture-restoration">Furniture Restoration</option>
-                            </select>
-                        </div>
-
+                    <div class="flex items-center justify-between gap-4">
                         <button
                             type="submit"
-                            class="w-full rounded-full bg-timber-orange py-3 font-semibold uppercase tracking-wider text-white transition hover:bg-timber-orange-hover"
+                            class="rounded-full bg-timber-terracotta px-12 py-3 font-semibold uppercase tracking-wider text-white transition hover:bg-timber-terracotta-hover"
                         >
-                            Book Appointment
+                            SUBMIT
                         </button>
-                    </form>
-                </div>
+
+                        <div class="flex items-center gap-3 text-sm text-timber-charcoal/70">
+                            <span>Make an appointment by phone:</span>
+                            <Phone class="h-4 w-4 text-timber-terracotta" />
+                            <span class="font-semibold">2-583-018-36-28</span>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </section>

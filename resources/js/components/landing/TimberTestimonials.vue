@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { Quote, Star, ChevronLeft } from 'lucide-vue-next'
+import { Star } from 'lucide-vue-next'
 import { useScrollReveal } from '@/composables/useScrollReveal'
 
 const { scrollRef } = useScrollReveal()
@@ -8,39 +8,63 @@ const { scrollRef } = useScrollReveal()
 const testimonials = [
     {
         text: 'The craftsmanship exceeded all our expectations. Our custom kitchen is a masterpiece.',
-        name: 'Sarah Mitchell',
+        name: 'STEFANIE RASHFORD',
+        avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face',
     },
     {
         text: 'Professional, reliable, and incredibly talented. They transformed our home with beautiful woodwork.',
-        name: 'James Anderson',
+        name: 'PATRIC STONE',
+        avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face',
     },
     {
         text: 'From design to installation, the entire process was smooth. Highly recommend their services.',
-        name: 'Emily Roberts',
+        name: 'HUGO JAMES',
+        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
     },
     {
         text: 'Outstanding quality and attention to detail. The wooden staircase they built is absolutely stunning.',
-        name: 'Michael Turner',
+        name: 'MICHAEL TURNER',
+        avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
     },
     {
         text: 'They delivered our custom bookshelf on time and it fits perfectly. True artisans at work.',
-        name: 'Laura Chen',
+        name: 'LAURA CHEN',
+        avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
     },
     {
         text: 'We hired them for our restaurant interior and the result is breathtaking. Clients love the ambience.',
-        name: 'David Kowalski',
+        name: 'DAVID KOWALSKI',
+        avatar: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop&crop=face',
     },
     {
         text: 'The team was incredibly professional from start to finish. Our new deck is the envy of the neighborhood.',
-        name: 'Jessica Williams',
+        name: 'JESSICA WILLIAMS',
+        avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=face',
     },
     {
         text: 'Beautiful handcrafted furniture that will last generations. Worth every penny.',
-        name: 'Robert Hayes',
+        name: 'ROBERT HAYES',
+        avatar: 'https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=100&h=100&fit=crop&crop=face',
     },
     {
         text: 'Exceptional woodworking skills and great communication throughout the project. Highly recommend!',
-        name: 'Amanda Foster',
+        name: 'AMANDA FOSTER',
+        avatar: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&h=100&fit=crop&crop=face',
+    },
+    {
+        text: 'The bespoke wardrobe they built for our bedroom is flawless. Every joint is perfectly fitted.',
+        name: 'THOMAS GREY',
+        avatar: 'https://images.unsplash.com/photo-1504257432389-52343af06ae3?w=100&h=100&fit=crop&crop=face',
+    },
+    {
+        text: 'Superb finish on our garden pergola. They understood the brief immediately and delivered beyond expectations.',
+        name: 'CLAIRE MORTON',
+        avatar: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=100&h=100&fit=crop&crop=face',
+    },
+    {
+        text: 'From the initial consultation to the final reveal, every step felt personal and considered. Truly first class.',
+        name: 'EVAN CARLISLE',
+        avatar: 'https://images.unsplash.com/photo-1463453091185-61582044d556?w=100&h=100&fit=crop&crop=face',
     },
 ]
 
@@ -55,10 +79,6 @@ const visibleTestimonials = computed(() => {
 
 function setPage(page: number): void {
     activeDot.value = page
-}
-
-function prevPage(): void {
-    activeDot.value = activeDot.value > 0 ? activeDot.value - 1 : totalPages.value - 1
 }
 </script>
 
@@ -87,20 +107,22 @@ function prevPage(): void {
                         <div
                             v-for="(testimonial, index) in visibleTestimonials"
                             :key="testimonial.name"
-                            class="rounded-xl p-8"
-                            :class="index === 1 ? 'bg-timber-cream' : 'border border-gray-200 bg-white'"
+                            class="rounded-xl p-10 bg-timber-cream shadow-md"
+                            :class="index === 1 ? 'transform scale-105 -translate-y-2 shadow-lg' : ''"
                         >
-                            <Quote class="mb-4 size-8 text-timber-orange" />
+                            <span class="block font-serif text-7xl leading-none text-timber-terracotta mb-2">&ldquo;</span>
 
-                            <p class="italic text-timber-charcoal/80">
+                            <p class="italic text-timber-charcoal">
                                 "{{ testimonial.text }}"
                             </p>
 
-                            <p class="mt-4 font-semibold text-timber-charcoal">
+                            <img :src="testimonial.avatar" :alt="testimonial.name" class="mx-auto mt-4 h-14 w-14 rounded-full object-cover" />
+
+                            <p class="mt-4 font-semibold uppercase tracking-wider text-timber-charcoal text-center">
                                 {{ testimonial.name }}
                             </p>
 
-                            <div class="mt-2 flex gap-1">
+                            <div class="mt-2 flex justify-center gap-1">
                                 <Star
                                     v-for="star in 5"
                                     :key="star"
@@ -114,14 +136,6 @@ function prevPage(): void {
             </div>
 
             <div class="mt-8 flex items-center justify-center gap-3">
-                <button
-                    type="button"
-                    class="flex h-8 w-8 items-center justify-center rounded-full border-2 border-timber-orange text-timber-orange transition-colors hover:bg-timber-orange hover:text-white"
-                    aria-label="Previous page"
-                    @click="prevPage"
-                >
-                    <ChevronLeft :size="16" />
-                </button>
                 <button
                     v-for="dot in totalPages"
                     :key="dot"
