@@ -204,3 +204,9 @@
     0% { transform: scale(1); opacity: 0.6; }
     100% { transform: scale(1.5); opacity: 0; }
 }
+
+.bg-rings {
+    background-image: url('/bg/rings_img.png');
+    background-position: calc(100% + 200px) calc(00% + 150px);
+    background-repeat: no-repeat;
+}

@@ -2,7 +2,14 @@
 import { ref, computed } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 import { useWindowScroll } from '@vueuse/core';
-import { Search, User, ShoppingCart, Menu, X, ChevronDown } from 'lucide-vue-next';
+import {
+    Search,
+    User,
+    ShoppingCart,
+    Menu,
+    X,
+    ChevronDown,
+} from 'lucide-vue-next';
 
 const page = usePage();
 const cartCount = computed(() => page.props.cart?.items_count ?? 0);
@@ -20,29 +27,25 @@ interface MenuItem {
 
 const menuItems: MenuItem[] = [
     {
-        label: 'HOME',
+        label: 'START',
         href: '#',
-        children: [
-            { label: 'Carpenter', href: '#' },
-            { label: 'Forestry', href: '#' },
-            { label: 'Woodworks', href: '#' },
-            { label: 'Store', href: '#' },
-        ],
     },
     {
-        label: 'ABOUT',
+        label: 'O STOLARNI',
         href: '#about',
+    },
+    {
+        label: 'GALERIA',
+        href: '#gallery',
         children: [
-            { label: 'About Us', href: '#about' },
-            { label: 'Our Team', href: '#' },
-            { label: 'Testimonials', href: '#testimonials' },
-            { label: 'FAQ', href: '#faq' },
-            { label: 'Gallery', href: '#portfolio' },
+            { label: 'Schody', href: '#about' },
+            { label: 'Drzwi', href: '#' },
+            { label: 'Kuchnie', href: '#testimonials' },
+            { label: 'Meble', href: '#faq' },
+            { label: 'Inne', href: '#portfolio' },
         ],
     },
-    { label: 'BLOG', href: '#blog' },
-    { label: 'STORE', href: '#store' },
-    { label: 'CONTACTS', href: '#contact' },
+    { label: 'KONTAKT', href: '#contact' },
 ];
 
 const megaMenuItems = [
@@ -67,16 +70,25 @@ function closeDropdown(): void {
 
 <template>
     <header
-        class="fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300"
-        :class="isScrolled ? 'bg-timber-forest/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'"
+        class="fixed top-0 right-0 left-0 z-50 w-full transition-all duration-300"
+        :class="
+            isScrolled
+                ? 'bg-timber-forest-dark/95 shadow-lg backdrop-blur-sm'
+                : 'bg-transparent'
+        "
     >
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex h-20 items-center justify-between">
                 <!-- Logo -->
                 <a href="#" class="flex items-center gap-2">
-                    <img src="/images/logo.png" alt="Lumbert" class="h-10 w-auto">
-                    <span class="font-timber text-xl font-bold uppercase tracking-wider text-timber-gold">
-                        LUMBERT
+                    <img
+                        src="/images/logo.svg"
+                        alt="Stolarz Piotr Jędrzejewski"
+                        class="h-10 w-auto"
+                    />
+                    <span
+                        class="font-timber text-xl font-bold tracking-wider text-timber-gold uppercase"
+                    >
                     </span>
                 </a>
 
@@ -85,9 +97,9 @@ function closeDropdown(): void {
                     <template v-for="item in menuItems" :key="item.label">
                         <!-- HOME with mega menu -->
                         <div
-                            v-if="item.label === 'HOME'"
+                            v-if="item.label === 'START'"
                             class="relative"
-                            @mouseenter="openDropdown('HOME')"
+                            @mouseenter="openDropdown('START')"
                             @mouseleave="closeDropdown"
                         >
                             <a
@@ -95,43 +107,7 @@ function closeDropdown(): void {
                                 class="flex items-center gap-1 text-xs font-medium tracking-widest text-white transition-colors duration-200 hover:text-timber-orange"
                             >
                                 {{ item.label }}
-                                <ChevronDown :size="14" class="opacity-60" />
                             </a>
-
-                            <Transition
-                                enter-active-class="transition duration-200 ease-out"
-                                enter-from-class="translate-y-1 opacity-0"
-                                enter-to-class="translate-y-0 opacity-100"
-                                leave-active-class="transition duration-150 ease-in"
-                                leave-from-class="translate-y-0 opacity-100"
-                                leave-to-class="translate-y-1 opacity-0"
-                            >
-                                <div
-                                    v-if="activeDropdown === 'HOME'"
-                                    class="absolute left-1/2 top-full mt-4 w-[480px] -translate-x-1/2 rounded-xl bg-white p-6 shadow-2xl"
-                                >
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <a
-                                            v-for="mega in megaMenuItems"
-                                            :key="mega.name"
-                                            href="#"
-                                            class="group/card flex flex-col overflow-hidden rounded-lg border border-gray-100 transition-shadow duration-200 hover:shadow-md"
-                                        >
-                                            <div
-                                                class="flex h-24 items-center justify-center"
-                                                :class="mega.color"
-                                            >
-                                                <span class="text-2xl opacity-40 transition-opacity duration-200 group-hover/card:opacity-70">🌲</span>
-                                            </div>
-                                            <div class="p-3">
-                                                <p class="text-sm font-semibold text-timber-charcoal">
-                                                    {{ mega.name }}
-                                                </p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </Transition>
                         </div>
 
                         <!-- Items with dropdown children (not HOME) -->
@@ -159,7 +135,7 @@ function closeDropdown(): void {
                             >
                                 <div
                                     v-if="activeDropdown === item.label"
-                                    class="absolute left-1/2 top-full mt-4 w-52 -translate-x-1/2 rounded-xl bg-white py-2 shadow-2xl"
+                                    class="absolute top-full left-1/2 mt-4 w-52 -translate-x-1/2 rounded-xl bg-white py-2 shadow-2xl"
                                 >
                                     <a
                                         v-for="child in item.children"
@@ -185,40 +161,40 @@ function closeDropdown(): void {
                 </nav>
 
                 <!-- Desktop Icons -->
-                <div class="hidden items-center gap-5 lg:flex">
-                    <button
-                        type="button"
-                        class="flex flex-col items-center gap-0.5 text-white transition-colors duration-200 hover:text-timber-orange"
-                        aria-label="Search"
-                    >
-                        <Search class="h-5 w-5" />
-                        <span class="text-[9px] font-medium uppercase tracking-widest">search</span>
-                    </button>
-                    <button
-                        type="button"
-                        class="flex flex-col items-center gap-0.5 text-white transition-colors duration-200 hover:text-timber-orange"
-                        aria-label="Account"
-                    >
-                        <User class="h-5 w-5" />
-                        <span class="text-[9px] font-medium uppercase tracking-widest">login</span>
-                    </button>
-                    <a
-                        href="/cart"
-                        class="flex flex-col items-center gap-0.5 text-white transition-colors duration-200 hover:text-timber-orange"
-                        aria-label="Cart"
-                    >
-                        <div class="relative">
-                            <ShoppingCart class="h-5 w-5" />
-                            <span
-                                v-if="cartCount > 0"
-                                class="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-timber-orange text-[10px] font-bold text-white"
-                            >
-                                {{ cartCount }}
-                            </span>
-                        </div>
-                        <span class="text-[9px] font-medium uppercase tracking-widest">cart {{ cartCount }}</span>
-                    </a>
-                </div>
+                <!--                <div class="hidden items-center gap-5 lg:flex">-->
+                <!--                    <button-->
+                <!--                        type="button"-->
+                <!--                        class="flex flex-col items-center gap-0.5 text-white transition-colors duration-200 hover:text-timber-orange"-->
+                <!--                        aria-label="Search"-->
+                <!--                    >-->
+                <!--                        <Search class="h-5 w-5" />-->
+                <!--                        <span class="text-[9px] font-medium uppercase tracking-widest">search</span>-->
+                <!--                    </button>-->
+                <!--                    <button-->
+                <!--                        type="button"-->
+                <!--                        class="flex flex-col items-center gap-0.5 text-white transition-colors duration-200 hover:text-timber-orange"-->
+                <!--                        aria-label="Account"-->
+                <!--                    >-->
+                <!--                        <User class="h-5 w-5" />-->
+                <!--                        <span class="text-[9px] font-medium uppercase tracking-widest">login</span>-->
+                <!--                    </button>-->
+                <!--                    <a-->
+                <!--                        href="/cart"-->
+                <!--                        class="flex flex-col items-center gap-0.5 text-white transition-colors duration-200 hover:text-timber-orange"-->
+                <!--                        aria-label="Cart"-->
+                <!--                    >-->
+                <!--                        <div class="relative">-->
+                <!--                            <ShoppingCart class="h-5 w-5" />-->
+                <!--                            <span-->
+                <!--                                v-if="cartCount > 0"-->
+                <!--                                class="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-timber-orange text-[10px] font-bold text-white"-->
+                <!--                            >-->
+                <!--                                {{ cartCount }}-->
+                <!--                            </span>-->
+                <!--                        </div>-->
+                <!--                        <span class="text-[9px] font-medium uppercase tracking-widest">cart {{ cartCount }}</span>-->
+                <!--                    </a>-->
+                <!--                </div>-->
 
                 <!-- Mobile Hamburger -->
                 <button
@@ -261,10 +237,18 @@ function closeDropdown(): void {
                 v-if="mobileOpen"
                 class="fixed inset-y-0 right-0 z-50 w-72 bg-timber-forest shadow-2xl"
             >
-                <div class="flex items-center justify-between border-b border-white/10 px-6 py-5">
+                <div
+                    class="flex items-center justify-between border-b border-white/10 px-6 py-5"
+                >
                     <div class="flex items-center gap-2">
-                        <img src="/images/logo.png" alt="Lumbert" class="h-8 w-auto">
-                        <span class="font-timber text-lg font-bold uppercase tracking-wider text-timber-gold">
+                        <img
+                            src="/images/logo.png"
+                            alt="Lumbert"
+                            class="h-8 w-auto"
+                        />
+                        <span
+                            class="font-timber text-lg font-bold tracking-wider text-timber-gold uppercase"
+                        >
                             LUMBERT
                         </span>
                     </div>
@@ -290,35 +274,35 @@ function closeDropdown(): void {
                     </a>
                 </nav>
 
-                <div class="flex items-center gap-6 px-6 pt-4">
-                    <button
-                        type="button"
-                        class="text-white transition-colors duration-200 hover:text-timber-orange"
-                        aria-label="Search"
-                    >
-                        <Search class="h-5 w-5" />
-                    </button>
-                    <button
-                        type="button"
-                        class="text-white transition-colors duration-200 hover:text-timber-orange"
-                        aria-label="Account"
-                    >
-                        <User class="h-5 w-5" />
-                    </button>
-                    <a
-                        href="/cart"
-                        class="relative text-white transition-colors duration-200 hover:text-timber-orange"
-                        aria-label="Cart"
-                    >
-                        <ShoppingCart class="h-5 w-5" />
-                        <span
-                            v-if="cartCount > 0"
-                            class="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-timber-orange text-[10px] font-bold text-white"
-                        >
-                            {{ cartCount }}
-                        </span>
-                    </a>
-                </div>
+                <!--                <div class="flex items-center gap-6 px-6 pt-4">-->
+                <!--                    <button-->
+                <!--                        type="button"-->
+                <!--                        class="text-white transition-colors duration-200 hover:text-timber-orange"-->
+                <!--                        aria-label="Search"-->
+                <!--                    >-->
+                <!--                        <Search class="h-5 w-5" />-->
+                <!--                    </button>-->
+                <!--                    <button-->
+                <!--                        type="button"-->
+                <!--                        class="text-white transition-colors duration-200 hover:text-timber-orange"-->
+                <!--                        aria-label="Account"-->
+                <!--                    >-->
+                <!--                        <User class="h-5 w-5" />-->
+                <!--                    </button>-->
+                <!--                    <a-->
+                <!--                        href="/cart"-->
+                <!--                        class="relative text-white transition-colors duration-200 hover:text-timber-orange"-->
+                <!--                        aria-label="Cart"-->
+                <!--                    >-->
+                <!--                        <ShoppingCart class="h-5 w-5" />-->
+                <!--                        <span-->
+                <!--                            v-if="cartCount > 0"-->
+                <!--                            class="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-timber-orange text-[10px] font-bold text-white"-->
+                <!--                        >-->
+                <!--                            {{ cartCount }}-->
+                <!--                        </span>-->
+                <!--                    </a>-->
+                <!--                </div>-->
             </div>
         </Transition>
     </header>

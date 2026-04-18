@@ -8,19 +8,23 @@ const hoveredIndex = ref<number | null>(null);
 
 const portfolioItems = [
     {
-        title: 'MODULAR KITCHEN',
+        title: 'KUCHNIE NA WYMIAR',
         image: '/images/service_01.jpg',
     },
     {
-        title: 'CUSTOM FURNITURE',
+        title: 'MEBLE',
         image: '/images/service_02.jpg',
     },
     {
-        title: 'WOODEN STAIRS',
+        title: 'SCHODY',
         image: '/images/service_03.jpg',
     },
     {
-        title: 'HARDWOOD FLOORING',
+        title: 'DRZWI',
+        image: '/images/service_05.webp',
+    },
+    {
+        title: 'INNE',
         image: '/images/service_04.jpg',
     },
 ];
@@ -30,11 +34,15 @@ const portfolioItems = [
     <section id="portfolio" class="bg-timber-forest py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div :ref="scrollRef" class="scroll-reveal mb-16 text-center">
-                <p class="mb-3 text-sm font-medium uppercase tracking-wider text-white/60">
-                    THE ESSENCE OF WOOD CARPENTRY
+                <p
+                    class="mb-3 text-sm font-medium tracking-wider text-white/60 uppercase"
+                >
+                    ESENCJA STOLARSTWA
                 </p>
-                <h2 class="font-timber text-3xl font-bold uppercase text-white lg:text-4xl">
-                    RESPONSIBLE TIMBER PRODUCTION
+                <h2
+                    class="font-timber text-3xl font-bold text-white uppercase lg:text-4xl"
+                >
+                    ZOBACZ NASZE REALIZACJE
                 </h2>
             </div>
 
@@ -55,7 +63,9 @@ const portfolioItems = [
                         class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"
                     />
                     <div class="absolute bottom-4 left-4">
-                        <span class="text-lg font-bold text-white">{{ item.title }}</span>
+                        <span class="text-lg font-bold text-white">{{
+                            item.title
+                        }}</span>
                     </div>
                 </div>
             </div>
@@ -70,7 +80,13 @@ const portfolioItems = [
                     :key="index"
                     :ref="scrollRef"
                     class="scroll-reveal portfolio-card relative cursor-pointer overflow-hidden rounded-xl"
-                    :class="hoveredIndex === index ? 'portfolio-card--active' : hoveredIndex !== null ? 'portfolio-card--inactive' : ''"
+                    :class="
+                        hoveredIndex === index
+                            ? 'portfolio-card--active'
+                            : hoveredIndex !== null
+                              ? 'portfolio-card--inactive'
+                              : ''
+                    "
                     @mouseenter="hoveredIndex = index"
                 >
                     <img
@@ -84,11 +100,13 @@ const portfolioItems = [
 
                     <!-- Vertical title (default state) -->
                     <div
-                        class="absolute right-4 top-4 transition-all duration-500"
-                        :class="hoveredIndex === index ? 'opacity-0' : 'opacity-100'"
+                        class="absolute top-4 right-4 transition-all duration-500"
+                        :class="
+                            hoveredIndex === index ? 'opacity-0' : 'opacity-100'
+                        "
                     >
                         <span
-                            class="text-lg font-bold uppercase tracking-wider text-white"
+                            class="text-lg font-bold tracking-wider text-white uppercase"
                             style="writing-mode: vertical-rl"
                         >
                             {{ item.title }}
@@ -97,18 +115,29 @@ const portfolioItems = [
 
                     <!-- Horizontal title (hover state) -->
                     <div
-                        class="absolute left-6 top-6 transition-all duration-500"
-                        :class="hoveredIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'"
+                        class="absolute top-6 left-6 transition-all duration-500"
+                        :class="
+                            hoveredIndex === index
+                                ? 'translate-y-0 opacity-100'
+                                : '-translate-y-4 opacity-0'
+                        "
                     >
-                        <span class="text-2xl font-bold text-white">{{ item.title }}</span>
+                        <span class="text-2xl font-bold text-white">{{
+                            item.title
+                        }}</span>
                     </div>
 
                     <!-- Bottom title -->
                     <div
                         class="absolute bottom-4 left-4 transition-all duration-500"
-                        :class="hoveredIndex === index ? 'opacity-100' : 'opacity-0'"
+                        :class="
+                            hoveredIndex === index ? 'opacity-100' : 'opacity-0'
+                        "
                     >
-                        <span class="text-sm uppercase tracking-wider text-white/70">View Project</span>
+                        <span
+                            class="text-sm tracking-wider text-white/70 uppercase"
+                            >Zobacz galerię realizacji</span
+                        >
                     </div>
                 </div>
             </div>
