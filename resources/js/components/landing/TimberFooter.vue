@@ -20,19 +20,19 @@ function scrollToTop(): void {
 </script>
 
 <template>
-    <footer class="bg-timber-forest-dark py-16 text-white">
+    <footer class="bg-timber-forest-dark py-16 text-white bg-wood">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
                 <!-- Left Column: Logo & Description -->
                 <div>
                     <div class="mb-6 flex items-center gap-2">
-                        <img src="/images/logo.png" alt="Lumbert" class="h-12 w-auto">
+                        <img src="/images/logo.svg" alt="Lumbert" class="h-12 w-auto">
                         <span class="font-timber text-xl font-bold uppercase tracking-wider">
-                            LUMBERT
+
                         </span>
                     </div>
                     <p class="mb-4 text-lg font-bold text-white">
-                        TIMBER FOR ELEGANT CONSTRUCTION
+                        DREWNIANE SCHODY I DRZWI
                     </p>
                     <p class="max-w-sm text-sm leading-relaxed text-white/70">
                         We are a passionate team of craftsmen dedicated to creating beautiful,

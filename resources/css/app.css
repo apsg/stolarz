@@ -210,3 +210,10 @@
     background-position: calc(100% + 200px) calc(00% + 150px);
     background-repeat: no-repeat;
 }
+
+.bg-wood{
+    background-image: url('/bg/wood_pattern_black_30.png');
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
