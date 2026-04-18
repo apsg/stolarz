@@ -113,7 +113,7 @@ onUnmounted(() => {
                                     href="#about"
                                     class="bg-timber-terracotta hover:bg-timber-terracotta-hover rounded-full px-8 py-3 text-sm font-semibold tracking-wider text-white uppercase transition-colors"
                                 >
-                                    READ MORE
+                                    DOWIEDZ SIĘ WIĘCEJ
                                 </a>
                                 <button
                                     class="flex items-center gap-2 rounded-full border-2 border-white px-8 py-3 text-sm font-semibold tracking-wider text-white uppercase transition-colors hover:bg-white/10"

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
-import { Phone } from 'lucide-vue-next';
+import { Phone, LucideMail } from 'lucide-vue-next';
 import { useScrollReveal } from '@/composables/useScrollReveal';
 
 const { scrollRef } = useScrollReveal();
@@ -30,89 +30,85 @@ const form = reactive({
                 :ref="scrollRef"
                 class="scroll-reveal mx-auto max-w-2xl rounded-2xl bg-white p-8 shadow-2xl lg:p-12"
             >
-                <h2 class="mb-8 text-2xl font-bold uppercase text-timber-charcoal">
-                    MAKE AN APPOINTMENT
+                <h2
+                    class="mb-8 text-2xl font-bold text-timber-charcoal uppercase"
+                >
+                    SKONTAKTUJ SIĘ Z NAMI
                 </h2>
 
                 <form @submit.prevent>
-                    <div class="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                        <div>
-                            <label class="mb-1 block text-sm font-semibold uppercase tracking-wider text-timber-charcoal/70">
-                                First Name
-                            </label>
-                            <input
-                                v-model="form.firstName"
-                                type="text"
-                                placeholder="First Name"
-                                class="w-full rounded-lg border border-timber-charcoal/20 bg-white px-4 py-3 transition focus:border-timber-orange focus:outline-none"
-                            />
-                        </div>
-                        <div>
-                            <label class="mb-1 block text-sm font-semibold uppercase tracking-wider text-timber-charcoal/70">
-                                Last Name
-                            </label>
-                            <input
-                                v-model="form.lastName"
-                                type="text"
-                                placeholder="Last Name"
-                                class="w-full rounded-lg border border-timber-charcoal/20 bg-white px-4 py-3 transition focus:border-timber-orange focus:outline-none"
-                            />
-                        </div>
+                    <div class="mb-4">
+                        <label
+                            class="mb-1 block text-sm font-semibold tracking-wider text-timber-charcoal/70 uppercase"
+                        >
+                            Imię i nazwisko
+                        </label>
+                        <input
+                            v-model="form.firstName"
+                            type="text"
+                            placeholder="Imię i nazwisko"
+                            class="w-full rounded-lg border border-timber-charcoal/20 bg-white px-4 py-3 transition focus:border-timber-orange focus:outline-none"
+                        />
                     </div>
 
                     <div class="mb-4">
-                        <label class="mb-1 block text-sm font-semibold uppercase tracking-wider text-timber-charcoal/70">
+                        <label
+                            class="mb-1 block text-sm font-semibold tracking-wider text-timber-charcoal/70 uppercase"
+                        >
                             Email
                         </label>
                         <input
                             v-model="form.email"
                             type="email"
-                            placeholder="Email Address"
+                            placeholder="Email"
                             class="w-full rounded-lg border border-timber-charcoal/20 bg-white px-4 py-3 transition focus:border-timber-orange focus:outline-none"
                         />
                     </div>
 
                     <div class="mb-4">
-                        <label class="mb-1 block text-sm font-semibold uppercase tracking-wider text-timber-charcoal/70">
-                            Phone Number
+                        <label
+                            class="mb-1 block text-sm font-semibold tracking-wider text-timber-charcoal/70 uppercase"
+                        >
+                            Telefon
                         </label>
                         <input
                             v-model="form.phone"
                             type="tel"
-                            placeholder="Phone Number"
+                            placeholder="Telefon"
                             class="w-full rounded-lg border border-timber-charcoal/20 bg-white px-4 py-3 transition focus:border-timber-orange focus:outline-none"
                         />
                     </div>
 
                     <div class="mb-6">
-                        <label class="mb-1 block text-sm font-semibold uppercase tracking-wider text-timber-charcoal/70">
-                            Carpenter Service
-                        </label>
-                        <select
-                            v-model="form.service"
-                            class="w-full rounded-lg border border-timber-charcoal/20 bg-white px-4 py-3 transition focus:border-timber-orange focus:outline-none"
+                        <label
+                            class="mb-1 block text-sm font-semibold tracking-wider text-timber-charcoal/70 uppercase"
                         >
-                            <option value="">Select a service</option>
-                            <option value="kitchen-design">Kitchen Design</option>
-                            <option value="custom-furniture">Custom Furniture</option>
-                            <option value="deck-construction">Deck Construction</option>
-                            <option value="interior-finishing">Interior Finishing</option>
-                            <option value="furniture-restoration">Furniture Restoration</option>
-                        </select>
+                            Wiadomość
+                        </label>
+                        <textarea
+                            v-model="form.message"
+                            type="tel"
+                            placeholder="Wpisz wiadomość"
+                            class="w-full rounded-lg border border-timber-charcoal/20 bg-white px-4 py-3 transition focus:border-timber-orange focus:outline-none"
+                        ></textarea>
                     </div>
 
                     <div class="flex items-center justify-between gap-4">
                         <button
                             type="submit"
-                            class="rounded-full bg-timber-terracotta px-12 py-3 font-semibold uppercase tracking-wider text-white transition hover:bg-timber-terracotta-hover"
+                            class="bg-timber-terracotta hover:bg-timber-terracotta-hover rounded-full px-12 py-3 font-semibold tracking-wider text-white uppercase transition"
                         >
                             SUBMIT
                         </button>
 
-                        <div class="flex items-center gap-3 text-sm text-timber-charcoal/70">
-                            <span>Make an appointment by phone:</span>
-                            <Phone class="h-4 w-4 text-timber-terracotta" />
-                            <span class="font-semibold">2-583-018-36-28</span>
+                        <div
+                            class="flex items-center gap-3 text-sm text-timber-charcoal/70"
+                        >
+                            <span>Skontaktuj się z nami bezpośrednio:</span>
+                            <Phone class="text-timber-terracotta h-4 w-4" />
+                            <span class="font-semibold">664&nbsp;014&nbsp;532</span>
+                            <LucideMail class="text-timber-terracotta h-4 w-4" />
+                            <span class="font-semibold">stolarzpj@wp.pl</span>
                         </div>
                     </div>
                 </form>

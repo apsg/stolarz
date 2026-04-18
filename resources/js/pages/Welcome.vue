@@ -16,7 +16,7 @@ import TimberFooter from '@/components/landing/TimberFooter.vue'
 </script>
 
 <template>
-    <Head title="Timber - Carpentry & Joinery">
+    <Head title="Stolarz Piotr Jędrzejewski">
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
         <link
