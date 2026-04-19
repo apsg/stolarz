@@ -3,16 +3,10 @@ name: linter
 on:
   push:
     branches:
-      - develop
-      - main
-      - master
-      - workos
+      none
   pull_request:
     branches:
-      - develop
-      - main
-      - master
-      - workos
+      none
 
 permissions:
   contents: write
