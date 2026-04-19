@@ -1,0 +1,59 @@
+name: Test and deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '20.x'
+      - name: Install npm dependencies
+        run: npm install
+      - name: Build assets
+        run: npm run prod
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@v2.1.6
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.KEY }}
+          ARGS: "-rltgoDzvO"
+          SOURCE: "/"
+          REMOTE_HOST: ${{ vars.HOST }}
+          REMOTE_USER: ${{ vars.USERNAME }}
+          REMOTE_PORT: 10229
+          TARGET: ${{ vars.TARGET }}
+          EXCLUDE: "/node_modules/, /.idea/, /.git/, /vendor/, /.github/, /.agents/, /.claude/"
+        with:
+          REMOTE_HOST: ${{ vars.HOST }}
+          REMOTE_USER: ${{ vars.USERNAME }}
+          SSH_PRIVATE_KEY: ${{ secrets.KEY }}
+      - name: Creating .env file should go here
+        run: echo "Creating env file..."
+      - name: Composer and migrations
+        uses: JimCronqvist/action-ssh@master
+        with:
+          hosts: ${{ secrets.USER }}@${{ secrets.HOST }}
+          privateKey: ${{ secrets.KEY }}
+          command: |
+            cd ${{ secrets.TARGET }}
+            php composer.phar install
+            php artisan env:decrypt --env=production --key=${{ secrets.ENCRYPT_KEY }} --force --filename=.env
+#            php artisan migrate --force
+
+            php artisan cache:clear
+            php artisan view:cache
+            php artisan config:cache
+            php artisan storage:link
+
+
