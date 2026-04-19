@@ -47,8 +47,6 @@ jobs:
             cd ${{ vars.TARGET }}
             php composer.phar install
             php artisan env:decrypt --env=production --key=${{ secrets.ENCRYPT_KEY }} --force --filename=.env
-#            php artisan migrate --force
-
             php artisan cache:clear
             php artisan view:cache
             php artisan config:cache
