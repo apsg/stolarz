@@ -4,6 +4,7 @@ import { Link, usePage } from '@inertiajs/vue3';
 import { useWindowScroll } from '@vueuse/core';
 import { Menu, X, ChevronDown } from 'lucide-vue-next';
 import { show as galleryShow } from '@/routes/gallery';
+import { home } from '@/routes';
 
 const page = usePage();
 const cartCount = computed(() => page.props.cart?.items_count ?? 0);
@@ -85,7 +86,7 @@ function closeDropdown(): void {
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex h-20 items-center justify-between">
                 <!-- Logo -->
-                <a href="#" class="flex items-center gap-2">
+                <Link :href="home().url" class="flex items-center gap-2">
                     <img
                         src="/images/logo.svg"
                         alt="Stolarz Piotr Jędrzejewski"
@@ -95,7 +96,7 @@ function closeDropdown(): void {
                         class="font-timber text-xl font-bold tracking-wider text-timber-gold uppercase"
                     >
                     </span>
-                </a>
+                </Link>
 
                 <!-- Desktop Navigation -->
                 <nav class="hidden items-center gap-8 lg:flex">
@@ -201,7 +202,10 @@ function closeDropdown(): void {
             </div>
         </div>
 
-        <!-- Mobile Drawer Overlay -->
+    </header>
+
+    <!-- Mobile Drawer (teleported to body so backdrop-blur on header doesn't break fixed positioning) -->
+    <Teleport to="body">
         <Transition
             enter-active-class="transition duration-300 ease-out"
             enter-from-class="opacity-0"
@@ -212,12 +216,11 @@ function closeDropdown(): void {
         >
             <div
                 v-if="mobileOpen"
-                class="fixed inset-0 z-40 bg-black/50"
+                class="fixed inset-0 z-[60] bg-black/50"
                 @click="closeMobile"
             />
         </Transition>
 
-        <!-- Mobile Drawer Panel -->
         <Transition
             enter-active-class="transition duration-300 ease-out"
             enter-from-class="translate-x-full"
@@ -228,23 +231,22 @@ function closeDropdown(): void {
         >
             <div
                 v-if="mobileOpen"
-                class="fixed inset-y-0 right-0 z-50 w-72 bg-timber-forest shadow-2xl"
+                class="fixed inset-y-0 right-0 z-[70] w-72 bg-timber-forest shadow-2xl"
             >
                 <div
                     class="flex items-center justify-between border-b border-white/10 px-6 py-5"
                 >
-                    <div class="flex items-center gap-2">
+                    <Link
+                        :href="home().url"
+                        class="flex items-center gap-2"
+                        @click="closeMobile"
+                    >
                         <img
-                            src="/images/logo.png"
-                            alt="Lumbert"
+                            src="/images/logo.svg"
+                            alt="Stolarz Piotr Jędrzejewski"
                             class="h-8 w-auto"
                         />
-                        <span
-                            class="font-timber text-lg font-bold tracking-wider text-timber-gold uppercase"
-                        >
-                            LUMBERT
-                        </span>
-                    </div>
+                    </Link>
                     <button
                         type="button"
                         class="text-white transition-colors duration-200 hover:text-timber-orange"
@@ -311,5 +313,5 @@ function closeDropdown(): void {
                 <!--                </div>-->
             </div>
         </Transition>
-    </header>
+    </Teleport>
 </template>

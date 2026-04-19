@@ -27,6 +27,8 @@ const categoryList = computed(() =>
     Object.entries(props.categories).map(([slug, title]) => ({ slug, title })),
 );
 
+const heroImage = '/images/service_02.jpg';
+
 const lightboxOpen = ref(false);
 const lightboxIndex = ref(0);
 
@@ -57,8 +59,14 @@ function closeLightbox(): void {
     <div class="font-timber bg-timber-cream text-timber-charcoal">
         <TimberHeader />
 
-        <section class="bg-timber-forest pt-32 pb-16">
-            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <section class="relative overflow-hidden pt-32 pb-16">
+            <img
+                :src="heroImage"
+                :alt="`Galeria ${category.title}`"
+                class="absolute inset-0 h-full w-full object-cover"
+                aria-hidden="true"
+            />
+            <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <nav
                     class="mb-6 flex items-center gap-2 text-xs tracking-widest text-white/60 uppercase"
                     aria-label="Breadcrumb"
@@ -127,7 +135,7 @@ function closeLightbox(): void {
                         v-for="(image, index) in images"
                         :key="image.url"
                         type="button"
-                        class="group mb-4 block w-full overflow-hidden rounded-xl bg-timber-charcoal/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-timber-orange"
+                        class="group mb-4 block w-full cursor-pointer overflow-hidden rounded-xl bg-timber-charcoal/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-timber-orange"
                         @click="openLightbox(index)"
                     >
                         <img

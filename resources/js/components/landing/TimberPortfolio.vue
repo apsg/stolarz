@@ -40,13 +40,12 @@ const portfolioItems: PortfolioItem[] = [
             </div>
 
             <!-- Mobile: grid layout -->
-            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:hidden">
+            <div class="relative z-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:hidden">
                 <Link
                     v-for="(item, index) in portfolioItems"
                     :key="index"
                     :href="galleryShow({ slug: item.slug }).url"
-                    :ref="scrollRef"
-                    class="scroll-reveal group relative block aspect-[3/4] cursor-pointer overflow-hidden rounded-xl"
+                    class="group relative block aspect-[3/4] cursor-pointer overflow-hidden rounded-xl"
                 >
                     <img
                         :src="item.image"
@@ -54,9 +53,9 @@ const portfolioItems: PortfolioItem[] = [
                         class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"
+                        class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"
                     />
-                    <div class="absolute bottom-4 left-4">
+                    <div class="pointer-events-none absolute bottom-4 left-4">
                         <span class="text-lg font-bold text-white">{{
                             item.title
                         }}</span>
