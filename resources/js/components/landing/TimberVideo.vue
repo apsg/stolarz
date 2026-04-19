@@ -30,7 +30,7 @@ import { Play } from 'lucide-vue-next'
             </button>
 
             <h2 class="mt-8 text-2xl font-bold uppercase tracking-widest text-white lg:text-3xl">
-                FIND THE PERFECT WOODWORK
+                ZOBACZ JAK PRACUJEMY
             </h2>
         </div>
     </section>

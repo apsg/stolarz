@@ -12,29 +12,29 @@ const openFaq = ref<string | null>(null);
 
 const faqItems = [
     {
-        id: 'moisture-level',
-        question: 'WHAT MOISTURE LEVEL SUITS INTERIOR JOINERY WORK?',
-        answer: 'Interior joinery typically requires wood dried to 8-12% moisture content. This range ensures stability and prevents warping or shrinkage after installation. We use precision moisture meters to verify every piece before it leaves our workshop.',
+        id: 'drewno',
+        question: 'Z JAKIEGO DREWNA WYKONUJECIE MEBLE?',
+        answer: 'Pracujemy głównie na litym drewnie dębowym. Oferujemy klasę rustic (z naturalnym charakterem, sękami i żyłkami) oraz klasę A/B (czystsza, bardziej jednorodna powierzchnia). Pomagamy dobrać klasę do stylu wnętrza.',
     },
     {
-        id: 'oil-facades',
-        question: 'HOW TO MAINTAIN OIL FINISHED FACADES?',
-        answer: 'Regular maintenance involves cleaning and reapplying oil every 1-2 years depending on exposure. Use a mild soap solution for cleaning, allow to dry fully, then apply a quality exterior timber oil with a brush or cloth working in the direction of the grain.',
+        id: 'wymiar',
+        question: 'CZY MOGĘ ZAMÓWIĆ MEBEL NA WYMIAR?',
+        answer: 'Tak – to nasza specjalność. Wykonujemy meble dokładnie według podanych wymiarów. Wystarczy podać szerokość, głębokość i wysokość, a my zajmiemy się resztą. Bezpłatna wycena przez telefon lub e-mail.',
     },
     {
-        id: 'wooden-roofs',
-        question: 'HOW LONG DO WOODEN ROOFS NORMALLY LAST?',
-        answer: 'With proper maintenance, wooden roofs can last 30-50 years. The lifespan depends on the wood species, climate conditions, installation quality, and regularity of maintenance. Cedar and redwood are among the most durable choices for roofing applications.',
+        id: 'czas',
+        question: 'JAK DŁUGO TRWA REALIZACJA ZAMÓWIENIA?',
+        answer: 'Czas realizacji zależy od złożoności projektu i aktualnej kolejki zleceń. Standardowy stół na wymiar to zazwyczaj 2–4 tygodnie. Przy zamówieniu prosimy o kontakt – podamy dokładny termin.',
     },
     {
-        id: 'ventilation',
-        question: 'WHAT VENTILATION IS NEEDED UNDER ROOF COVERINGS?',
-        answer: 'Adequate ventilation prevents moisture buildup that leads to rot and structural damage. A continuous air gap of at least 25mm between the insulation and roof deck is recommended, with ventilation openings at the eaves and ridge to allow airflow across the full roof area.',
+        id: 'dostawa',
+        question: 'CZY OFERUJECIE DOSTAWĘ I MONTAŻ?',
+        answer: 'Możliwość dostawy ustalamy indywidualnie. Działamy głównie na terenie Kujaw i Pomorza, ale dla większych zamówień możliwy jest transport w dalsze rejony Polski.',
     },
     {
-        id: 'decking-inspection',
-        question: 'HOW OFTEN TO INSPECT OUTDOOR DECKING?',
-        answer: 'Inspect decking at least twice yearly, before and after winter. Check for loose boards, protruding fasteners, signs of rot or discoloration, and any structural movement. Early detection of issues dramatically reduces repair costs and extends the life of your deck.',
+        id: 'pielegnacja',
+        question: 'JAK PIELĘGNOWAĆ DĘBOWY BLAT?',
+        answer: 'Blaty lakierowane wystarczy przecierać wilgotną ściereczką. Unikaj pozostawiania mokrych naczyń bezpośrednio na drewnie. Raz na rok można odświeżyć powierzchnię delikatnym woskiem do drewna – drewno odwdzięczy się pięknym wyglądem na lata.',
     },
 ];
 </script>
@@ -45,10 +45,10 @@ const faqItems = [
             <div class="grid grid-cols-1 gap-12 lg:grid-cols-2">
                 <div>
                     <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-timber-terracotta">
-                        HELPFUL INFORMATION
+                        POMOCNE INFORMACJE
                     </p>
                     <h2 class="mb-8 text-2xl font-bold uppercase text-timber-charcoal lg:text-3xl">
-                        FREQUENTLY ASKED QUESTIONS
+                        NAJCZĘŚCIEJ ZADAWANE PYTANIA
                     </h2>
 
                     <div>
@@ -82,7 +82,7 @@ const faqItems = [
                 <div class="hidden lg:block">
                     <img
                         src="https://images.unsplash.com/photo-1520420097861-e4959843b682?w=800&q=80"
-                        alt="Stacked timber wood"
+                        alt="Deski dębowe w stolarni"
                         class="h-full min-h-[500px] w-full rounded-lg object-cover"
                     />
                 </div>
