@@ -1,32 +1,25 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { Link } from '@inertiajs/vue3';
 import { useScrollReveal } from '@/composables/useScrollReveal';
+import { show as galleryShow } from '@/routes/gallery';
 
 const { scrollRef } = useScrollReveal();
 
 const hoveredIndex = ref<number | null>(null);
 
-const portfolioItems = [
-    {
-        title: 'KUCHNIE NA WYMIAR',
-        image: '/images/service_01.jpg',
-    },
-    {
-        title: 'MEBLE',
-        image: '/images/service_02.jpg',
-    },
-    {
-        title: 'SCHODY',
-        image: '/images/service_03.jpg',
-    },
-    {
-        title: 'DRZWI',
-        image: '/images/service_05.webp',
-    },
-    {
-        title: 'INNE',
-        image: '/images/service_04.jpg',
-    },
+interface PortfolioItem {
+    title: string;
+    slug: string;
+    image: string;
+}
+
+const portfolioItems: PortfolioItem[] = [
+    { title: 'KUCHNIE NA WYMIAR', slug: 'kuchnie', image: '/images/service_01.jpg' },
+    { title: 'MEBLE', slug: 'meble', image: '/images/service_02.jpg' },
+    { title: 'SCHODY', slug: 'schody', image: '/images/service_03.jpg' },
+    { title: 'DRZWI', slug: 'drzwi', image: '/images/service_05.webp' },
+    { title: 'INNE', slug: 'inne', image: '/images/service_04.jpg' },
 ];
 </script>
 
@@ -48,11 +41,12 @@ const portfolioItems = [
 
             <!-- Mobile: grid layout -->
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:hidden">
-                <div
+                <Link
                     v-for="(item, index) in portfolioItems"
                     :key="index"
+                    :href="galleryShow({ slug: item.slug }).url"
                     :ref="scrollRef"
-                    class="scroll-reveal group relative aspect-[3/4] cursor-pointer overflow-hidden rounded-xl"
+                    class="scroll-reveal group relative block aspect-[3/4] cursor-pointer overflow-hidden rounded-xl"
                 >
                     <img
                         :src="item.image"
@@ -67,7 +61,7 @@ const portfolioItems = [
                             item.title
                         }}</span>
                     </div>
-                </div>
+                </Link>
             </div>
 
             <!-- Desktop: flex expand layout -->
@@ -75,11 +69,12 @@ const portfolioItems = [
                 class="hidden h-[560px] gap-3 lg:flex"
                 @mouseleave="hoveredIndex = null"
             >
-                <div
+                <Link
                     v-for="(item, index) in portfolioItems"
                     :key="index"
+                    :href="galleryShow({ slug: item.slug }).url"
                     :ref="scrollRef"
-                    class="scroll-reveal portfolio-card relative cursor-pointer overflow-hidden rounded-xl"
+                    class="scroll-reveal portfolio-card relative block cursor-pointer overflow-hidden rounded-xl"
                     :class="
                         hoveredIndex === index
                             ? 'portfolio-card--active'
@@ -139,7 +134,7 @@ const portfolioItems = [
                             >Zobacz galerię realizacji</span
                         >
                     </div>
-                </div>
+                </Link>
             </div>
         </div>
     </section>

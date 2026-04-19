@@ -1,15 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { usePage } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 import { useWindowScroll } from '@vueuse/core';
-import {
-    Search,
-    User,
-    ShoppingCart,
-    Menu,
-    X,
-    ChevronDown,
-} from 'lucide-vue-next';
+import { Menu, X, ChevronDown } from 'lucide-vue-next';
+import { show as galleryShow } from '@/routes/gallery';
 
 const page = usePage();
 const cartCount = computed(() => page.props.cart?.items_count ?? 0);
@@ -19,33 +13,44 @@ const isScrolled = computed(() => y.value > 80);
 const mobileOpen = ref(false);
 const activeDropdown = ref<string | null>(null);
 
+interface MenuChild {
+    label: string;
+    href: string;
+    inertia?: boolean;
+}
+
 interface MenuItem {
     label: string;
     href: string;
-    children?: { label: string; href: string }[];
+    inertia?: boolean;
+    children?: MenuChild[];
 }
+
+const galleryChildren: MenuChild[] = [
+    { label: 'Schody', href: galleryShow({ slug: 'schody' }).url, inertia: true },
+    { label: 'Drzwi', href: galleryShow({ slug: 'drzwi' }).url, inertia: true },
+    { label: 'Kuchnie', href: galleryShow({ slug: 'kuchnie' }).url, inertia: true },
+    { label: 'Meble', href: galleryShow({ slug: 'meble' }).url, inertia: true },
+    { label: 'Inne', href: galleryShow({ slug: 'inne' }).url, inertia: true },
+];
 
 const menuItems: MenuItem[] = [
     {
         label: 'START',
-        href: '#',
+        href: '/',
+        inertia: true,
     },
     {
         label: 'O STOLARNI',
-        href: '#about',
+        href: '/#about',
     },
     {
         label: 'GALERIA',
-        href: '#gallery',
-        children: [
-            { label: 'Schody', href: '#about' },
-            { label: 'Drzwi', href: '#' },
-            { label: 'Kuchnie', href: '#testimonials' },
-            { label: 'Meble', href: '#faq' },
-            { label: 'Inne', href: '#portfolio' },
-        ],
+        href: galleryShow({ slug: 'kuchnie' }).url,
+        inertia: true,
+        children: galleryChildren,
     },
-    { label: 'KONTAKT', href: '#contact' },
+    { label: 'KONTAKT', href: '/#contact' },
 ];
 
 const megaMenuItems = [
@@ -95,35 +100,21 @@ function closeDropdown(): void {
                 <!-- Desktop Navigation -->
                 <nav class="hidden items-center gap-8 lg:flex">
                     <template v-for="item in menuItems" :key="item.label">
-                        <!-- HOME with mega menu -->
+                        <!-- Items with dropdown children -->
                         <div
-                            v-if="item.label === 'START'"
-                            class="relative"
-                            @mouseenter="openDropdown('START')"
-                            @mouseleave="closeDropdown"
-                        >
-                            <a
-                                :href="item.href"
-                                class="flex items-center gap-1 text-xs font-medium tracking-widest text-white transition-colors duration-200 hover:text-timber-orange"
-                            >
-                                {{ item.label }}
-                            </a>
-                        </div>
-
-                        <!-- Items with dropdown children (not HOME) -->
-                        <div
-                            v-else-if="item.children"
+                            v-if="item.children"
                             class="relative"
                             @mouseenter="openDropdown(item.label)"
                             @mouseleave="closeDropdown"
                         >
-                            <a
+                            <component
+                                :is="item.inertia ? Link : 'a'"
                                 :href="item.href"
                                 class="flex items-center gap-1 text-xs font-medium tracking-widest text-white transition-colors duration-200 hover:text-timber-orange"
                             >
                                 {{ item.label }}
                                 <ChevronDown :size="14" class="opacity-60" />
-                            </a>
+                            </component>
 
                             <Transition
                                 enter-active-class="transition duration-200 ease-out"
@@ -137,26 +128,28 @@ function closeDropdown(): void {
                                     v-if="activeDropdown === item.label"
                                     class="absolute top-full left-1/2 mt-4 w-52 -translate-x-1/2 rounded-xl bg-white py-2 shadow-2xl"
                                 >
-                                    <a
+                                    <component
+                                        :is="child.inertia ? Link : 'a'"
                                         v-for="child in item.children"
                                         :key="child.label"
                                         :href="child.href"
                                         class="block px-5 py-2.5 text-sm text-timber-charcoal transition-colors duration-150 hover:bg-timber-cream hover:text-timber-orange"
                                     >
                                         {{ child.label }}
-                                    </a>
+                                    </component>
                                 </div>
                             </Transition>
                         </div>
 
                         <!-- Simple links -->
-                        <a
+                        <component
+                            :is="item.inertia ? Link : 'a'"
                             v-else
                             :href="item.href"
                             class="text-xs font-medium tracking-widest text-white transition-colors duration-200 hover:text-timber-orange"
                         >
                             {{ item.label }}
-                        </a>
+                        </component>
                     </template>
                 </nav>
 
@@ -263,15 +256,28 @@ function closeDropdown(): void {
                 </div>
 
                 <nav class="flex flex-col px-6 py-6">
-                    <a
-                        v-for="item in menuItems"
-                        :key="item.label"
-                        :href="item.href"
-                        class="border-b border-white/10 py-4 text-xs font-medium tracking-widest text-white transition-colors duration-200 hover:text-timber-orange"
-                        @click="closeMobile"
-                    >
-                        {{ item.label }}
-                    </a>
+                    <template v-for="item in menuItems" :key="item.label">
+                        <component
+                            :is="item.inertia ? Link : 'a'"
+                            :href="item.href"
+                            class="border-b border-white/10 py-4 text-xs font-medium tracking-widest text-white transition-colors duration-200 hover:text-timber-orange"
+                            @click="closeMobile"
+                        >
+                            {{ item.label }}
+                        </component>
+                        <template v-if="item.children">
+                            <component
+                                :is="child.inertia ? Link : 'a'"
+                                v-for="child in item.children"
+                                :key="child.label"
+                                :href="child.href"
+                                class="border-b border-white/10 py-3 pl-4 text-xs tracking-widest text-white/70 uppercase transition-colors duration-200 hover:text-timber-orange"
+                                @click="closeMobile"
+                            >
+                                {{ child.label }}
+                            </component>
+                        </template>
+                    </template>
                 </nav>
 
                 <!--                <div class="flex items-center gap-6 px-6 pt-4">-->
