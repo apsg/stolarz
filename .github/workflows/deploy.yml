@@ -59,8 +59,7 @@ jobs:
           REMOTE_HOST: ${{ vars.HOST }}
           REMOTE_USER: ${{ vars.USERNAME }}
           SSH_PRIVATE_KEY: ${{ secrets.KEY }}
-      - name: Creating .env file should go here
-        run: echo "Creating env file..."
+
       - name: Composer and migrations
         uses: JimCronqvist/action-ssh@master
         with:
@@ -68,7 +67,7 @@ jobs:
           privateKey: ${{ secrets.KEY }}
           command: |
             cd ${{ vars.TARGET }}
-            php composer.phar install
+            composer install --no-interaction --prefer-dist --optimize-autoloader
             php artisan env:decrypt --env=production --key=${{ secrets.ENCRYPT_KEY }} --force --filename=.env
             php artisan cache:clear
             php artisan view:cache
