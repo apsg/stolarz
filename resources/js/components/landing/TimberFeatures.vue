@@ -1,20 +1,20 @@
 <script setup lang="ts">
 const features = [
     {
-        title: 'SUSTAINABLE FORESTRY',
-        description: 'We source our timber from responsibly managed forests ensuring ecological balance.',
+        title: 'LITE DREWNO DĘBOWE',
+        description: 'Używamy wyłącznie naturalnego drewna dębowego w klasach rustic oraz A/B – pięknego i trwałego.',
     },
     {
-        title: 'QUALITY CONTROL',
-        description: 'Every piece undergoes rigorous quality control for lasting durability and beauty.',
+        title: 'KONTROLA JAKOŚCI',
+        description: 'Każdy element przechodzi dokładną kontrolę – od wyboru drewna po końcowe lakierowanie.',
     },
     {
-        title: 'EXPERT TEAM',
-        description: 'Our master craftsmen bring decades of combined experience to every project.',
+        title: 'INDYWIDUALNE PODEJŚCIE',
+        description: 'Każde zamówienie jest realizowane według specyfikacji klienta. Słuchamy i doradzamy.',
     },
     {
-        title: 'CUSTOM PROCESSING',
-        description: 'From concept to completion, we create bespoke woodwork tailored to your needs.',
+        title: 'MEBLE NA WYMIAR',
+        description: 'Od projektu po montaż – wykonujemy meble dokładnie dopasowane do Twojego wnętrza.',
     },
 ]
 </script>

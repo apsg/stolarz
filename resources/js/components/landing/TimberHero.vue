@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, computed } from 'vue';
 import { Play } from 'lucide-vue-next';
+import { Link } from '@inertiajs/vue3';
+import { show as galleryShow } from '@/routes/gallery';
 
 interface Slide {
     subtitle: string;
     heading: string;
     image: string;
+    slug: string;
 }
 
 const slides: Slide[] = [
@@ -13,31 +16,40 @@ const slides: Slide[] = [
         subtitle: 'Tradycyjne oraz nowoczesne schody drewniane',
         heading: 'SCHODY',
         image: '/images/schody.webp',
+        slug: 'schody',
     },
     {
         subtitle: 'Drzwi wewnętrzne i wejściowe',
         heading: 'DRZWI',
         image: '/images/drzwi.webp',
+        slug: 'drzwi',
     },
     {
         subtitle: 'Meble kuchenne na wymiar, z charakterem',
         heading: 'KUCHNIE',
         image: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=1920&q=80',
+        slug: 'kuchnie',
     },
     {
         subtitle:
             'Dowolne meble z drewna, płyt meblowych, szkła, metalu i nie tylko',
         heading: 'MEBLE',
         image: '/images/meble.webp',
+        slug: 'meble',
     },
     {
         subtitle: 'Masz pomysł na nietypową rzecz z drewna? Zrealizujemy go!',
         heading: 'INNE',
         image: '/images/inne.webp',
+        slug: 'inne',
     },
 ];
 
 const currentSlide = ref(0);
+
+const galleryHref = computed(
+    () => galleryShow({ slug: slides[currentSlide.value].slug }).url,
+);
 let interval: ReturnType<typeof setInterval> | null = null;
 
 function goToSlide(index: number): void {
@@ -115,12 +127,13 @@ onUnmounted(() => {
                                 >
                                     DOWIEDZ SIĘ WIĘCEJ
                                 </a>
-                                <button
+                                <Link
+                                    :href="galleryHref"
                                     class="flex items-center gap-2 rounded-full border-2 border-white px-8 py-3 text-sm font-semibold tracking-wider text-white uppercase transition-colors hover:bg-white/10"
                                 >
                                     <Play :size="16" class="fill-white" />
                                     ZOBACZ GALERIĘ REALIZACJI
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     </Transition>

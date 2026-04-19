@@ -5,18 +5,18 @@ const { scrollRef } = useScrollReveal();
 
 const bulletPoints = [
     {
-        title: 'MOISTURE AND DRYING',
-        description: 'Careful moisture control ensures wood stability and longevity in every project.',
+        title: 'DOBÓR DREWNA I SUSZENIE',
+        description: 'Używamy wyłącznie drewna dębowego o odpowiedniej wilgotności – gwarantuje to trwałość i brak paczenia.',
         thumbnail: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=128&h=128&fit=crop&q=80',
     },
     {
-        title: 'PROJECT LOGISTICS',
-        description: 'Each piece of timber is carefully graded and sorted for optimal quality.',
+        title: 'OBRÓBKA I SPAWANIE',
+        description: 'Precyzyjne cięcie, frezowanie oraz spawanie stalowych nóg – każdy element wykonujemy z dbałością o milimetry.',
         thumbnail: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?w=128&h=128&fit=crop&q=80',
     },
     {
-        title: 'QUALITY ASSURANCE',
-        description: 'We use only natural, eco-friendly finishes and treatments for all our work.',
+        title: 'LAKIEROWANIE I WYKOŃCZENIE',
+        description: 'Klasa rustic lub A/B – wybierz charakter drewna. Każdy blat jest ręcznie szlifowany i lakierowany.',
         thumbnail: 'https://images.unsplash.com/photo-1542621334-a254cf47733d?w=128&h=128&fit=crop&q=80',
     },
 ];
@@ -31,7 +31,7 @@ const bulletPoints = [
                     <div class="flex flex-col justify-center px-8 py-12 sm:px-12 lg:px-16">
                         <div :ref="scrollRef" class="scroll-reveal">
                             <h2 class="font-timber mb-8 text-3xl font-bold uppercase leading-tight text-timber-charcoal lg:text-4xl">
-                                OPEN YOUR MIND TO THE POSSIBILITY OF WOOD FORESTRY
+                                PASJA DO DREWNA I RZETELNE RZEMIOSŁO STOLARSKIE
                             </h2>
                         </div>
 
@@ -61,7 +61,7 @@ const bulletPoints = [
                     <div :ref="scrollRef" class="scroll-reveal flex items-end justify-center overflow-visible">
                         <img
                             src="/images/carpenter.png"
-                            alt="Craftsman at work"
+                            alt="Stolarz przy pracy"
                             class="-mt-12 h-full min-h-[400px] w-full object-contain object-bottom"
                         />
                     </div>

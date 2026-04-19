@@ -22,6 +22,8 @@
     --color-timber-cream: hsl(40 30% 95%);
     --color-timber-charcoal: hsl(210 6% 11%);
     --color-timber-gold: hsl(33 34% 63%);
+    --color-timber-terracotta: hsl(6 57% 46%);
+    --color-timber-terracotta-hover: hsl(6 57% 38%);
 
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);

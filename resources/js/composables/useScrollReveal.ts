@@ -1,4 +1,4 @@
-import { onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, type ComponentPublicInstance } from 'vue'
 
 export function useScrollReveal() {
     const elements: Set<Element> = new Set()
@@ -26,9 +26,13 @@ export function useScrollReveal() {
     })
 
     function scrollRef(el: Element | ComponentPublicInstance | null) {
-        if (el instanceof Element) {
-            elements.add(el)
-            observer?.observe(el)
+        if (!el) {
+            return
+        }
+        const node = el instanceof Element ? el : (el.$el as unknown)
+        if (node instanceof Element) {
+            elements.add(node)
+            observer?.observe(node)
         }
     }
 

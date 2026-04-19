@@ -6,62 +6,62 @@ const { scrollRef } = useScrollReveal();
 interface ServiceItem {
     name: string;
     description: string;
-    price: number;
+    price: string;
 }
 
 const leftColumn: ServiceItem[] = [
     {
-        name: 'HOUSE CONCEPT',
-        description: 'Layout study and massing review',
-        price: 235,
+        name: 'STÓŁ LOFTOWY NA WYMIAR',
+        description: 'Stalowe nogi + blat dębowy',
+        price: 'Wycena',
     },
     {
-        name: 'DOOR INSTALLATION',
-        description: 'Fitted frames and quiet seals',
-        price: 120,
+        name: 'BLAT DĘBOWY',
+        description: 'Klasa rustic lub A/B, dowolne wymiary',
+        price: 'Wycena',
     },
     {
-        name: 'WALL PANELING',
-        description: 'Tongue and groove surface finish',
-        price: 40,
+        name: 'STÓŁ JADALNIANY',
+        description: 'Lite drewno, projekt indywidualny',
+        price: 'Wycena',
     },
     {
-        name: 'SHINGLE LAYING',
-        description: 'Weatherproof roof covering work',
-        price: 90,
+        name: 'PÓŁKA / REGAŁ',
+        description: 'Montaż na ścianie lub wolnostojący',
+        price: 'Wycena',
     },
     {
-        name: 'DECK FRAMING',
-        description: 'Structural outdoor platform build',
-        price: 78,
+        name: 'KONSOLA / KOMODA',
+        description: 'Na wymiar, lite drewno',
+        price: 'Wycena',
     },
 ];
 
 const rightColumn: ServiceItem[] = [
     {
-        name: 'RAFTER REPAIR',
-        description: 'Roof timber restoration service',
-        price: 65,
+        name: 'ŁAWA / STOLIK KAWOWY',
+        description: 'Industrialny lub klasyczny styl',
+        price: 'Wycena',
     },
     {
-        name: 'MOISTURE CHECK',
-        description: 'Diagnostic scan and drying plan',
-        price: 36,
+        name: 'BIURKO NA WYMIAR',
+        description: 'Do domu i biura, z litego drewna',
+        price: 'Wycena',
     },
     {
-        name: 'FURNITURE BUILD',
-        description: 'Bespoke joinery to specification',
-        price: 450,
+        name: 'RENOWACJA MEBLI',
+        description: 'Szlifowanie, lakierowanie, odnowienie',
+        price: 'Wycena',
     },
     {
-        name: 'FACADE CLADDING',
-        description: 'Exterior timber board installation',
-        price: 145,
+        name: 'NOGI STALOWE / METALOWE',
+        description: 'Produkcja i spawanie na zamówienie',
+        price: 'Wycena',
     },
     {
-        name: 'INTERIOR FINISH',
-        description: 'Fine woodwork trim and detailing',
-        price: 240,
+        name: 'PROJEKT + WYCENA',
+        description: 'Bezpłatna konsultacja i doradztwo',
+        price: 'Gratis',
     },
 ];
 </script>
@@ -71,10 +71,10 @@ const rightColumn: ServiceItem[] = [
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div :ref="scrollRef" class="scroll-reveal mb-14 text-center">
                 <p class="mb-3 text-sm font-medium uppercase tracking-wider text-timber-terracotta">
-                    OUR PRICES
+                    CENNIK USŁUG
                 </p>
                 <h2 class="font-timber text-3xl font-bold uppercase text-timber-charcoal lg:text-4xl">
-                    CARPENTER SERVICES
+                    USŁUGI STOLARSKIE
                 </h2>
             </div>
 
@@ -94,7 +94,7 @@ const rightColumn: ServiceItem[] = [
                         <div class="flex items-center shrink-0">
                             <span class="mx-3 flex-1 border-t-2 border-timber-forest/40 w-8 hidden sm:block"></span>
                             <span class="shrink-0">
-                                <sup class="text-sm align-super text-timber-terracotta">$</sup><span class="text-2xl font-bold text-timber-terracotta">{{ service.price }}</span>
+                                <span class="text-lg font-bold text-timber-terracotta">{{ service.price }}</span>
                             </span>
                         </div>
                     </div>
@@ -120,7 +120,7 @@ const rightColumn: ServiceItem[] = [
                         <div class="flex items-center shrink-0">
                             <span class="mx-3 flex-1 border-t-2 border-timber-forest/40 w-8 hidden sm:block"></span>
                             <span class="shrink-0">
-                                <sup class="text-sm align-super text-timber-terracotta">$</sup><span class="text-2xl font-bold text-timber-terracotta">{{ service.price }}</span>
+                                <span class="text-lg font-bold text-timber-terracotta">{{ service.price }}</span>
                             </span>
                         </div>
                     </div>

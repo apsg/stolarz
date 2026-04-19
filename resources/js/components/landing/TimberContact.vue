@@ -93,22 +93,26 @@ const form = reactive({
                         ></textarea>
                     </div>
 
-                    <div class="flex items-center justify-between gap-4">
+                    <div class="flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-between">
                         <button
                             type="submit"
-                            class="bg-timber-terracotta hover:bg-timber-terracotta-hover rounded-full px-12 py-3 font-semibold tracking-wider text-white uppercase transition"
+                            class="bg-timber-terracotta hover:bg-timber-terracotta-hover w-full rounded-full px-12 py-3 font-semibold tracking-wider text-white uppercase transition sm:w-auto"
                         >
                             SUBMIT
                         </button>
 
                         <div
-                            class="flex items-center gap-3 text-sm text-timber-charcoal/70"
+                            class="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-timber-charcoal/70"
                         >
                             <span>Skontaktuj się z nami bezpośrednio:</span>
-                            <Phone class="text-timber-terracotta h-4 w-4" />
-                            <span class="font-semibold">664&nbsp;014&nbsp;532</span>
-                            <LucideMail class="text-timber-terracotta h-4 w-4" />
-                            <span class="font-semibold">stolarzpj@wp.pl</span>
+                            <a href="tel:664014532" class="inline-flex items-center gap-2">
+                                <Phone class="text-timber-terracotta h-4 w-4 shrink-0" />
+                                <span class="font-semibold">664&nbsp;014&nbsp;532</span>
+                            </a>
+                            <a href="mailto:stolarzpj@wp.pl" class="inline-flex items-center gap-2 min-w-0">
+                                <LucideMail class="text-timber-terracotta h-4 w-4 shrink-0" />
+                                <span class="font-semibold break-all">stolarzpj@wp.pl</span>
+                            </a>
                         </div>
                     </div>
                 </form>
