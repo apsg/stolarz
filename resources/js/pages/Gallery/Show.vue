@@ -27,7 +27,7 @@ const categoryList = computed(() =>
     Object.entries(props.categories).map(([slug, title]) => ({ slug, title })),
 );
 
-const heroImage = '/images/service_02.jpg';
+const heroImage = '/images/galeria.webp';
 
 const lightboxOpen = ref(false);
 const lightboxIndex = ref(0);
@@ -59,13 +59,14 @@ function closeLightbox(): void {
     <div class="font-timber bg-timber-cream text-timber-charcoal">
         <TimberHeader />
 
-        <section class="relative overflow-hidden pt-32 pb-16">
+        <section class="relative overflow-hidden pt-32 pb-16 bg-muted-foreground">
             <img
                 :src="heroImage"
                 :alt="`Galeria ${category.title}`"
-                class="absolute inset-0 h-full w-full object-cover"
+                class="absolute inset-0 h-full w-full object-cover "
                 aria-hidden="true"
             />
+            <div class="absolute inset-0 bg-black/50 h-100" aria-hidden="true" />
             <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <nav
                     class="mb-6 flex items-center gap-2 text-xs tracking-widest text-white/60 uppercase"

@@ -62,11 +62,11 @@ const { scrollRef } = useScrollReveal();
                             >
                                 <span
                                     class="text-3xl leading-none font-extrabold text-white"
-                                    >16</span
+                                    >40</span
                                 >
                                 <span
                                     class="text-xs leading-tight font-bold text-white uppercase"
-                                    >YEARS OF EXPERIENCE</span
+                                    >LAT TRADYCJI</span
                                 >
                             </div>
                         </div>
