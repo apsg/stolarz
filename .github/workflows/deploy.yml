@@ -65,7 +65,6 @@ jobs:
           privateKey: ${{ secrets.KEY }}
           command: |
             cd ${{ vars.TARGET }}
-            chown -R www-data:www-data .
             composer install --no-interaction --prefer-dist --optimize-autoloader
             php artisan env:decrypt --env=production --key=${{ secrets.ENCRYPT_KEY }} --force --filename=.env
             php artisan cache:clear
